@@ -21,15 +21,19 @@ void rucsac(int M, int n, int w[], int p[], double x[]){
     }
 
     for(int i=n-1; i>=0; i--){
-        for(auto pair : S[n]){
+        bool found = false;
+        for(auto pair : S[i]){
             if(maxProfit == pair.profit && maxWeight == pair.weight)
+            {
+                x[i]=0;
+                found = true;
+                break;
+            }
         }
-        if()
-        {
-            x[i+1] = 0; 
-        }
-        else{
-            x[i+1] = 1;
+        if(!found){
+            x[i] = 1;
+            maxWeight -= w[i];
+            maxProfit -= p[i];
 
         }
     }
@@ -54,7 +58,7 @@ vector<Pair> interclasareGrafica(vector<Pair> S, vector<Pair> T){
             }
             k++;
         }
-        if(S[j].weight == T[k].profit){
+        if(S[j].weight == T[k].weight){
             if(T[k].profit > profit && T[k].profit > S[j].profit){
                 Q.push_back(T[k]);
                 profit = T[k].profit;
